@@ -1,0 +1,6 @@
+#folders to ignore
+__pycache__/
+build/
+dist/
+venv/
+main.spec
