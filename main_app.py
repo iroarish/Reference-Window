@@ -10,6 +10,8 @@ class App:
         self.root = TkinterDnD.Tk()
 
         self.root.title("Reference Window App")
+        
+        self.root.attributes("-topmost", True)
 
         self.root.geometry("250x100")
 
