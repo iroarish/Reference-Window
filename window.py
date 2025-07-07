@@ -1,4 +1,5 @@
 import os
+import sys
 from tkinter import *
 from tkinter import ttk
 from PIL import ImageTk, Image, ImageOps
@@ -9,6 +10,10 @@ class Window(Toplevel):
     def __init__(self, file_path):
 
         super().__init__()
+
+        self.icon = self.resource_path("assets/app.ico")
+
+        self.iconbitmap(self.icon)
 
         self.title("Reference")
 
@@ -123,3 +128,10 @@ class Window(Toplevel):
     def end_panning(self, event):
         self.canvas.config(cursor="")
         self._pan_start = None
+
+    
+    def resource_path(self, relative_path):
+        """ Get absolute path to resource, works for dev and for PyInstaller """
+        if hasattr(sys, '_MEIPASS'):
+            return os.path.join(sys._MEIPASS, relative_path)
+        return os.path.join(os.path.abspath("."), relative_path)

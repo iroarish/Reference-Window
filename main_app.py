@@ -1,3 +1,5 @@
+import os
+import sys
 from tkinter import *
 from tkinter import ttk
 from window import Window
@@ -10,6 +12,10 @@ class App:
         self.root = TkinterDnD.Tk()
 
         self.root.title("Reference Window App")
+
+        self.icon = self.resource_path("assets/app.ico")
+
+        self.root.iconbitmap(self.icon)
         
         self.root.attributes("-topmost", True)
 
@@ -42,3 +48,9 @@ class App:
             file_path = file_path.strip('{}')
             if file_path.lower().endswith(('.png', '.jpg', '.jpeg', '.gif', '.bmp')):
                 Window(file_path)
+
+    def resource_path(self, relative_path):
+        """ Get absolute path to resource, works for dev and for PyInstaller """
+        if hasattr(sys, '_MEIPASS'):
+            return os.path.join(sys._MEIPASS, relative_path)
+        return os.path.join(os.path.abspath("."), relative_path)
